@@ -9,8 +9,8 @@ const Layout = ({ children, title }) => {
         <h1 className="sidebar-title">GymShift 💪🏽</h1> 
         <nav className="sidebar-nav">
           <Link to="/Dashboard" className="nav-link">Eventos</Link>
+          <Link to="/Usuarios" className="nav-link">Usuarios</Link>
           <Link to="/Somos" className="nav-link">¿Quienes Somos?</Link>
-          <Link to="/UserGenerate" className="nav-link">Crear Usuario</Link>
         </nav>
         <button className="logout-button">Log Out</button> 
       </aside>

@@ -1,23 +1,21 @@
-/* Contenedor principal */
+
 .somos-container {
-    max-width: 800px; /* Ancho máximo para mejor legibilidad */
-    margin: 0 auto; /* Centrar horizontalmente */
+    max-width: 800px;
+    margin: 0 auto; 
     padding: 2rem;
-    text-align: center; /* Texto centrado */
+    text-align: center; 
   }
   
-  /* Título */
   .title-somos {
-    color: #2D2D2D; /* Color oscuro y profesional */
-    font-size: 2.5rem; /* Tamaño grande */
-    font-weight: 600; /* Negrita */
-    margin-bottom: 1.5rem; /* Espaciado inferior */
+    color: #2D2D2D; 
+    font-size: 2.5rem; 
+    font-weight: 600; 
+    margin-bottom: 1.5rem; 
   }
   
-  /* Texto */
   .text-somos {
-    color: #4A4A4A; /* Color gris oscuro */
-    font-size: 1.1rem; /* Tamaño legible */
-    line-height: 1.8; /* Espaciado entre líneas */
-    margin-bottom: 2rem; /* Espaciado inferior */
+    color: #4A4A4A; 
+    font-size: 1.1rem; 
+    line-height: 1.8; 
+    margin-bottom: 2rem; 
   }
