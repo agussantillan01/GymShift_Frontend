@@ -50,7 +50,7 @@ const Login = () => {
           {isLoading ? "Cargando..." : "Ingresar"}
         </button>
         <p>
-          ¿No tienes cuenta? <a href="/register">Regístrate aquí</a>
+           <a href="/register">Olvidate la contraseña?</a>
         </p>
       </form>
     </div>

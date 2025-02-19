@@ -1,52 +1,79 @@
-
 .layout {
   background-color: white;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   text-decoration: none;
 }
 
-.header {
+/* Sidebar */
+.sidebar {
   background-color: #2D2D2D;
   color: #E0E0E0;
-  padding: 0.5rem; 
-  text-align: center;
-  border-bottom: 1px solid #4A4A4A; 
-  text-decoration: none;
-  min-height: 20px; 
+  width: 175px;
+  min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Título del sidebar */
+.sidebar-title {
+  font-size: 1.5rem;
+  margin-bottom: 2rem; /* Espacio debajo del título */
+  color: #E0E0E0;
+  font-family: 'Abadi Extra Light', sans-serif;
+}
+
+/* Navegación */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Espacio entre los enlaces */
+  width: 100%;
+}
+
+/* Enlaces de navegación */
 .nav-link {
   color: #E0E0E0;
-  margin: 0 1rem;
   text-decoration: none;
   transition: transform 0.3s ease, text-shadow 0.3s ease;
   font-family: 'Abadi Extra Light', sans-serif;
   font-size: 15px;
-  font-weight: 300; 
+  font-weight: 300;
+  padding: 0.5rem;
+  text-align: center;
 }
-
 
 .nav-link:hover {
-  transform: scale(1.05); 
-  text-shadow: 0 0 8px rgba(27, 27, 27, 0.5); 
-  text-decoration: none;
-  color:black;
+  transform: scale(1.05);
+  text-shadow: 0 0 8px rgba(27, 27, 27, 0.5);
+  background-color: rgba(255, 255, 255, 0.1); /* Fondo al hacer hover */
+  border-radius: 4px;
 }
 
+/* Botón de Log Out */
+.logout-button {
+  margin-top: auto; /* Lo coloca al final del sidebar */
+  background-color: #4A4A4A;
+  color: #E0E0E0;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 4px;
+}
+
+.logout-button:hover {
+  background-color: #6A6A6A; /* Cambio de color al hacer hover */
+}
+
+/* Contenido principal */
 .main-content {
   flex: 1;
   padding: 1rem;
-  color: #E0E0E0; 
+  color: #2D2D2D; /* Color del texto del contenido */
 }
 
-.footer {
-  background-color: #2D2D2D;
-  color: #B0B0B0; 
-  padding: 0.25rem 1rem;
-  text-align: center;
-  border-top: 1px solid #4A4A4A; 
-  font-size: 0.9rem; 
-  min-height: 30px; 
-}

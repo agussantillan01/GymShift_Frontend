@@ -1,61 +1,80 @@
-.container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+.user-generate-container {
+  width: 90%;
+  max-width: 1200px; /* Limita el ancho máximo para que no se extienda demasiado */
+  margin: 2rem auto;
+  padding: 2rem;
+  /* background-color: #2D2D2D; */
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(215, 215, 215, 0.2);
+  color: #2D2D2D;
+}
 
-  }
-  
-  .title {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-    
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .formGroup {
-    margin-bottom: 15px;
-  }
-  
-  .label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .input:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  .button {
-    padding: 10px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: rgb(30, 30, 30);
-    color:black;
-  }
+.user-generate-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #2D2D2D;
+  font-family: 'Abadi Extra Light', sans-serif;
+}
+
+.user-generate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem; /* Espacio entre los campos */
+}
+
+.form-group {
+  flex: 1; /* Hace que los campos ocupen el espacio disponible */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 1rem;
+  color: #2D2D2D;
+  font-family: 'Abadi Extra Light', sans-serif;
+}
+
+.form-input {
+  padding: 0.8rem;
+  border: 1px solid #4A4A4A;
+  border-radius: 4px;
+  background-color:  #f5f5f5;
+  color: #3D3D3D;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-input::placeholder {
+  color: #B0B0B0;
+}
+
+.form-button {
+  padding: 0.8rem;
+  background-color: #4A4A4A;
+  color: #E0E0E0;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Ocupa todo el ancho disponible */
+  max-width: 200px; /* Limita el ancho del botón */
+  margin: 0 auto; /* Centra el botón */
+}
+
+.form-button:hover {
+  background-color: #6A6A6A;
+}
