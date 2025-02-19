@@ -108,7 +108,7 @@ const UserGenerate = () => {
                 required
               >
                 <option value="">Seleccione un tipo</option>
-                <option value="Profesor">Profesor</option>
+                <option value="Trainer">Trainer</option>
                 <option value="Secretario/a">Secretario/a</option>
               </select>
             </div>

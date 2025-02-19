@@ -1,41 +1,88 @@
-
+/* Usuarios.css */
 .Usuarios-container {
-    max-width: 800px;
-    margin: 0 auto; 
-    padding: 0rem;
-    text-align: center;
-  }
-  
-  /* Título */
-  .title-usuarios {
-    color: #2D2D2D; 
-    font-size: 2.5rem; 
-    font-weight: 600; 
-    margin-bottom: 1.5rem; 
-  }
-  
-  /* Texto */
-  .text-usuarios {
-    color: #4A4A4A; 
-    font-size: 1.1rem; 
-    line-height: 1.8;
-    margin-bottom: 2rem;
-  }
-.alignButton { 
-    text-align: right;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0rem;
+  text-align: center;
 }
+
+/* Título */
+.title-usuarios {
+  color: #2d2d2d;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* Texto */
+.text-usuarios {
+  color: #4a4a4a;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.alignButton {
+  text-align: right;
+}
+
 .button-usuarios {
-    width: 15%;
-    padding: 3px;
-    background-color: #2D2D2D;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    margin-top: 0px;
-  }
-  
-  .button-usuarios:hover {
-    background-color:  #000;/* Cambia el color al pasar el mouse */
-  }
+  width: 15%;
+  padding: 3px;
+  background-color: #2d2d2d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 0px;
+}
+
+.button-usuarios:hover {
+  background-color: #000; /* Cambia el color al pasar el mouse */
+}
+
+/* Nuevos estilos para el campo de búsqueda */
+.search-container {
+  margin-bottom: 1.5rem;
+  text-align: left; /* Alinea el buscador a la izquierda */
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #4a4a4a;
+}
+
+/* Nuevos estilos para la grilla */
+.usuarios-grid {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: 600;
+  color: #2d2d2d;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
