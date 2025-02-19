@@ -1,8 +1,8 @@
 .user-generate-container {
   width: 90%;
-  max-width: 1200px; /* Limita el ancho máximo para que no se extienda demasiado */
+  max-width: 1200px;
   margin: 2rem auto;
-  padding: 2rem;
+  padding: 0rem;
   /* background-color: #2D2D2D; */
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(215, 215, 215, 0.2);
@@ -25,11 +25,11 @@
 
 .form-row {
   display: flex;
-  gap: 1.5rem; /* Espacio entre los campos */
+  gap: 1.5rem; 
 }
 
 .form-group {
-  flex: 1; /* Hace que los campos ocupen el espacio disponible */
+  flex: 1; 
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -70,9 +70,9 @@
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 100%; /* Ocupa todo el ancho disponible */
-  max-width: 200px; /* Limita el ancho del botón */
-  margin: 0 auto; /* Centra el botón */
+  width: 100%; 
+  max-width: 200px; 
+  margin: 0 auto; 
 }
 
 .form-button:hover {

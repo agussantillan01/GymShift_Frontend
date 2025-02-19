@@ -4,8 +4,7 @@ import Dashboard from "../pages/Dashboard";
 import Somos from "../pages/Somos";
 import UserGenerate from "../pages/userGenerate";
 import PrivateRoute from "../router/PrivateRoute"; 
-import Layout from "../layouts/Layout"
-
+import Layout from "../layouts/Layout";
 
 const AppRouter = () => {
   return (
@@ -14,11 +13,11 @@ const AppRouter = () => {
         <Route path="/" element={<Login />} />
 
         <Route element={<PrivateRoute rolesPermitidos={["ADMIN", "SECRET", "PROFE", "ALUMNO"]} />}>
-            <Route path="/Dashboard" element={<Layout><Dashboard /></Layout>} />
-            <Route path="/Somos" element={<Layout><Somos /></Layout>} />
+            <Route path="/Dashboard" element={<Layout title="Eventos"><Dashboard /></Layout>} />
+            <Route path="/Somos" element={<Layout title="¿Quienes Somos?"><Somos /></Layout>} />
         </Route>
         <Route element={<PrivateRoute rolesPermitidos={["ADMIN", "SECRET"]} />}>
-            <Route path="/UserGenerate" element={<Layout><UserGenerate /></Layout>} />
+            <Route path="/UserGenerate" element={<Layout title="Crear Usuario"><UserGenerate /></Layout>} />
         </Route>
       </Routes>
     </Router>

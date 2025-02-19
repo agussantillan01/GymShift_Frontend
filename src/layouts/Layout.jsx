@@ -1,8 +1,8 @@
 import React from "react";
 import "../assets/styles/Layout.css";
 import { Link } from "react-router-dom";
-
-const Layout = ({ children }) => {
+import Header from "../pages/Header"
+const Layout = ({ children, title }) => {
   return (
     <div className="layout">
       <aside className="sidebar">
@@ -15,8 +15,10 @@ const Layout = ({ children }) => {
         <button className="logout-button">Log Out</button> 
       </aside>
 
-      <main className="main-content">{children}</main>
-
+      <main className="main-content">
+        <Header title={title} /> {/* Usa el componente Header */}
+        {children}
+      </main>
     </div>
   );
 };

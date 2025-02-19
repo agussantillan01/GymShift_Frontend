@@ -1,0 +1,21 @@
+
+.styleHeader {
+    margin-bottom: 20px; 
+    background-color: #FFFFFF;
+  }
+  
+  .styleHeader h2 {
+    text-align: left;
+    font-size: 15px; 
+    color: rgb(101, 101, 101);
+    background-color: #FFFFFF;
+    margin: 0; 
+    font-family: 'Abadi Extra Light', sans-serif;
+
+  }
+  
+  .divider {
+    height: 1px;
+    background: #e0e0e0; 
+    margin: 10px 0;
+  }
