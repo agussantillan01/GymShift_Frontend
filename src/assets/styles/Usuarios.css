@@ -151,3 +151,31 @@ tr:hover {
   font-weight: 500;
   color: #555;
 }
+
+.btnModificar, .btnDelete {
+  width: 3px;
+  height: 3px; 
+  padding: 11; 
+  border: none; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.btnModificar {
+  background-color: rgb(57, 109, 205);
+}
+
+.btnDelete {
+  background-color: rgb(237, 44, 44);
+}
+
+.btnModificar img, .btnDelete img {
+  width: 20px; 
+  height: 23px; 
+}
+
+table td {
+  padding: 7px; 
+}

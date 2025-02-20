@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../assets/styles/Usuarios.css";
 import { Link } from "react-router-dom";
-import { getUsuarios } from "../api/UserService"
+import { getUsuarios } from "../api/UserService"; 
+import iconDelete from "../assets/images/iconDelete.svg";
+import iconEdit from "../assets/images/iconEdit.svg"; 
 const Usuarios = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [usuarios, setUsuarios] = useState([]); 
@@ -33,6 +35,12 @@ const Usuarios = () => {
   const handlePageChange = (newPageNumber) => {
     setPageNumber(newPageNumber);
   };
+  const handleUpdate = () => { 
+
+  };
+  const handleDelete= () => { 
+    
+  }; 
 
   return (
     <div className="Usuarios-container">
@@ -56,19 +64,23 @@ const Usuarios = () => {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>#</th>
               <th>Nombre</th>
               <th>Email</th>
               <th>Rol</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             {usuarios.map((usuario) => (
-              <tr key={usuario.id}>
+                <tr key={usuario.id}>
                 <td>{usuario.id}</td>
                 <td>{usuario.nombre}</td>
                 <td>{usuario.email}</td>
                 <td>{usuario.rol}</td>
+                <td><button onClick={handleUpdate} className="btnModificar"><img src={iconEdit}></img></button></td> 
+                <td><button onClick={handleDelete} className="btnDelete"><img src={iconDelete}></img></button></td>
               </tr>
             ))}
           </tbody>
