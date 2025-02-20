@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../assets/styles/Usuarios.css";
 import { Link } from "react-router-dom";
-
+import { getUsuarios } from "../api/UserService"
 const Usuarios = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [usuarios, setUsuarios] = useState([]); 
@@ -10,45 +10,17 @@ const Usuarios = () => {
   const [totalPages, setTotalPages] = useState(0);
 
   const fetchUsuarios = async (pageNumber, pageSize, filter) => {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        console.error("No hay token disponible");
-        return;
-      }
-
-      const response = await fetch(
-        `https://localhost:7242/GetUsuarios?pageNumber=${pageNumber}&pageSize=${pageSize}&filter=${filter}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Error al obtener los usuarios");
-      }
-
-      const data = await response.json();
-      console.log("Datos recibidos:", data); 
-      if (data && Array.isArray(data)) {
-        setUsuarios(data); 
-        setTotalPages(Math.ceil(data.length / pageSize)); 
-      } else {
-        setUsuarios([]);
-        setTotalPages(0);
-        console.warn("La estructura de la respuesta no es la esperada:", data);
-      }
-    } catch (error) {
-      console.error("Error:", error);
+    try 
+    {
+      const data = await getUsuarios(pageNumber, pageSize, filter);
+      setUsuarios(data);
+      setTotalPages(Math.ceil(data.length / pageSize)); 
+    } catch (error) 
+    {
       setUsuarios([]);
       setTotalPages(0);
     }
   };
-
   useEffect(() => {
     fetchUsuarios(pageNumber, pageSize, searchTerm);
   }, [pageNumber, pageSize, searchTerm]);
