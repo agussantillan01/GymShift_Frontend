@@ -4,32 +4,62 @@ import { Link } from "react-router-dom";
 
 const Usuarios = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [usuarios, setUsuarios] = useState([]);
+  const [usuarios, setUsuarios] = useState([]); 
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [totalPages, setTotalPages] = useState(0);
 
-  // Obtener el ID del usuario autenticado desde el localStorage
-  const userId = localStorage.getItem("userId");
-
-  // Función para obtener los usuarios
-  const fetchUsuarios = async () => {
+  const fetchUsuarios = async (pageNumber, pageSize, filter) => {
     try {
-      const response = await fetch(`https://localhost:7242/GetUsuarios?userId=${userId}`);
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("No hay token disponible");
+        return;
+      }
+
+      const response = await fetch(
+        `https://localhost:7242/GetUsuarios?pageNumber=${pageNumber}&pageSize=${pageSize}&filter=${filter}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
       if (!response.ok) {
         throw new Error("Error al obtener los usuarios");
       }
+
       const data = await response.json();
-      setUsuarios(data); // Almacena los usuarios en el estado
+      console.log("Datos recibidos:", data); 
+      if (data && Array.isArray(data)) {
+        setUsuarios(data); 
+        setTotalPages(Math.ceil(data.length / pageSize)); 
+      } else {
+        setUsuarios([]);
+        setTotalPages(0);
+        console.warn("La estructura de la respuesta no es la esperada:", data);
+      }
     } catch (error) {
       console.error("Error:", error);
+      setUsuarios([]);
+      setTotalPages(0);
     }
   };
 
-  // Llama a fetchUsuarios cuando el componente se monta
   useEffect(() => {
-    fetchUsuarios();
-  }, []);
+    fetchUsuarios(pageNumber, pageSize, searchTerm);
+  }, [pageNumber, pageSize, searchTerm]);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
+    setPageNumber(1); 
+  };
+
+  const handlePageChange = (newPageNumber) => {
+    setPageNumber(newPageNumber);
   };
 
   return (
@@ -40,7 +70,6 @@ const Usuarios = () => {
         </Link>
       </div>
 
-      {/* Campo de búsqueda */}
       <div className="search-container">
         <input
           type="text"
@@ -51,7 +80,6 @@ const Usuarios = () => {
         />
       </div>
 
-      {/* Grilla de usuarios */}
       <div className="usuarios-grid">
         <table>
           <thead>
@@ -63,20 +91,34 @@ const Usuarios = () => {
             </tr>
           </thead>
           <tbody>
-            {usuarios
-              .filter((usuario) =>
-                usuario.nombre.toLowerCase().includes(searchTerm.toLowerCase())
-              )
-              .map((usuario) => (
-                <tr key={usuario.id}>
-                  <td>{usuario.id}</td>
-                  <td>{usuario.nombre}</td>
-                  <td>{usuario.email}</td>
-                  <td>{usuario.rol}</td>
-                </tr>
-              ))}
+            {usuarios.map((usuario) => (
+              <tr key={usuario.id}>
+                <td>{usuario.id}</td>
+                <td>{usuario.nombre}</td>
+                <td>{usuario.email}</td>
+                <td>{usuario.rol}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
+      </div>
+
+      <div className="pagination">
+        <button
+          onClick={() => handlePageChange(pageNumber - 1)}
+          disabled={pageNumber === 1}
+        >
+          Atras
+        </button>
+        <span>
+          Página {pageNumber} de {totalPages}
+        </span>
+        <button
+          onClick={() => handlePageChange(pageNumber + 1)}
+          disabled={pageNumber === totalPages}
+        >
+          Siguiente
+        </button>
       </div>
     </div>
   );

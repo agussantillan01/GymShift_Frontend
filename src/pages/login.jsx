@@ -50,7 +50,7 @@ const Login = () => {
           {isLoading ? "Cargando..." : "Ingresar"}
         </button>
         <p>
-           <a href="/register">Olvidate la contraseña?</a>
+           <a href="/register">Olvidaste la contraseña?</a>
         </p>
       </form>
     </div>

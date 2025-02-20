@@ -2,16 +2,16 @@ import apiClient from "./apiClient";
 
 const API_URL = "/Authenticate";  
 
-export const login = async (Usuario, Password) => { // Mayúsculas para coincidir con el backend
+export const login = async (Usuario, Password) => {
     try {
         console.log("🟢 Enviando datos al backend:", { Usuario, Password });
 
         const response = await apiClient.post(
             API_URL, 
-            { Usuario, Password }, // Asegúrate de que coincidan con el backend
+            { Usuario, Password }, 
             {
                 headers: {
-                    'Content-Type': 'application/json' // Enviar como JSON
+                    'Content-Type': 'application/json' 
                 }
             }
         );
