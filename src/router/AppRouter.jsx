@@ -13,11 +13,11 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Login />} />
 
-        <Route element={<PrivateRoute rolesPermitidos={["ADMIN", "SECRET", "PROFE", "ALUMNO"]} />}>
+        <Route element={<PrivateRoute rolesPermitidos={["ADMIN", "RECEPCIONISTA", "COACH", "ALUMNO"]} />}>
             <Route path="/Dashboard" element={<Layout title="Eventos"><Dashboard /></Layout>} />
             <Route path="/Somos" element={<Layout title="¿Quienes Somos?"><Somos /></Layout>} />
         </Route>
-        <Route element={<PrivateRoute rolesPermitidos={["ADMIN", "SECRET"]} />}>
+        <Route element={<PrivateRoute rolesPermitidos={["ADMIN", "RECEPCIONISTA"]} />}>
             <Route path="/Usuarios" element={<Layout title="Usuarios"><Usuarios /></Layout>} />  
             <Route path="/UserGenerate" element={<Layout title="Crear Usuario"><UserGenerate /></Layout>} />
         </Route>

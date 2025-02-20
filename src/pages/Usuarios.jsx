@@ -66,6 +66,7 @@ const Usuarios = () => {
             <tr>
               <th>#</th>
               <th>Nombre</th>
+              <th>Apellido</th>
               <th>Email</th>
               <th>Rol</th>
               <th></th>
@@ -77,6 +78,7 @@ const Usuarios = () => {
                 <tr key={usuario.id}>
                 <td>{usuario.id}</td>
                 <td>{usuario.nombre}</td>
+                <td>{usuario.apellido}</td>
                 <td>{usuario.email}</td>
                 <td>{usuario.rol}</td>
                 <td><button onClick={handleUpdate} className="btnModificar"><img src={iconEdit}></img></button></td> 
