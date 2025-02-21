@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import { GetTiposEventos } from "../api/TipoEventoService";
 import "../assets/styles/UserGenerate.css";
 
 const UserGenerate = () => {
@@ -12,6 +13,42 @@ const UserGenerate = () => {
   const [userName, setUserName] = useState("");
   const [tipoUsuario, setTipoUsuario] = useState("");
 
+  const [tiposEventos, setTiposEventos] = useState([]);
+  const [eventosSeleccionados, setEventosSeleccionados] = useState([]);
+  const [mostrarDesplegable, setMostrarDesplegable] = useState(false);
+
+  const fetchTiposEventos = async () => {
+    try {
+      const data = await GetTiposEventos();
+      setTiposEventos(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Error al obtener los tipos de eventos:", error);
+      setTiposEventos([]);
+    }
+  };
+
+  useEffect(() => {
+    if (
+      (rolUsuarioLogueado === "ADMIN" && tipoUsuario === "Coach") ||
+      rolUsuarioLogueado === "RECEPCIONISTA"
+    ) {
+      fetchTiposEventos();
+    } else {
+      setTiposEventos([]);
+    }
+  }, [tipoUsuario, rolUsuarioLogueado]);
+
+  const handleSeleccionarActividad = (evento) => {
+    if (!eventosSeleccionados.some((e) => e.id === evento.id)) {
+      setEventosSeleccionados([...eventosSeleccionados, evento]);
+    }
+    setMostrarDesplegable(false); 
+  };
+
+  const handleEliminarActividad = (eventoId) => {
+    setEventosSeleccionados(eventosSeleccionados.filter((e) => e.id !== eventoId));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -21,6 +58,7 @@ const UserGenerate = () => {
       email,
       userName,
       tipoUsuario: rolUsuarioLogueado === "ADMIN" ? tipoUsuario : null,
+      eventosSeleccionados,
     });
 
     setNombre("");
@@ -28,6 +66,7 @@ const UserGenerate = () => {
     setEmail("");
     setUserName("");
     setTipoUsuario("");
+    setEventosSeleccionados([]);
   };
 
   return (
@@ -114,6 +153,48 @@ const UserGenerate = () => {
             </div>
           </div>
         )}
+
+        {(rolUsuarioLogueado === "ADMIN" && tipoUsuario === "Coach") ||
+        rolUsuarioLogueado === "RECEPCIONISTA" ? (
+          <div className="form-row">
+            <div className="form-group">
+              <label className="form-label">Actividades:</label>
+              <div className="actividades-container">
+                <div className="desplegable-container">
+                  <button
+                    type="button"
+                    className="desplegable-button"
+                    onClick={() => setMostrarDesplegable(!mostrarDesplegable)}
+                  >
+                    Seleccionar actividades
+                  </button>
+                  {mostrarDesplegable && (
+                    <div className="desplegable-lista">
+                      {tiposEventos.map((evento) => (
+                        <div
+                          key={evento.id}
+                          className="desplegable-item"
+                          onClick={() => handleSeleccionarActividad(evento)}
+                        >
+                          {evento.nombre}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                  <div className="tarjetas-container">
+                    {eventosSeleccionados.map((evento) => (
+                    <div className="tarjeta-actividad">
+                    <span>{evento.nombre}</span>
+                    <button type="button"className="eliminar-button"onClick={() => handleEliminarActividad(evento.id)}>×</button>
+                  </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
 
         <button type="submit" className="form-button">
           Generar Usuario
