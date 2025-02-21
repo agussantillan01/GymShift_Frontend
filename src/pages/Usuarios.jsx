@@ -4,25 +4,26 @@ import { Link } from "react-router-dom";
 import { getUsuarios } from "../api/UserService"; 
 import iconDelete from "../assets/images/iconDelete.svg";
 import iconEdit from "../assets/images/iconEdit.svg"; 
+
 const Usuarios = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [usuarios, setUsuarios] = useState([]); 
   const [pageNumber, setPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(9);
   const [totalPages, setTotalPages] = useState(0);
 
   const fetchUsuarios = async (pageNumber, pageSize, filter) => {
-    try 
-    {
+    try {
       const data = await getUsuarios(pageNumber, pageSize, filter);
-      setUsuarios(data);
-      setTotalPages(Math.ceil(data.length / pageSize)); 
-    } catch (error) 
-    {
+      setUsuarios(Array.isArray(data) ? data : []); // Asegura que sea un array
+      console.log(data);
+      setTotalPages(Math.ceil((data.length || 1) / pageSize)); 
+    } catch (error) {
       setUsuarios([]);
       setTotalPages(0);
     }
   };
+
   useEffect(() => {
     fetchUsuarios(pageNumber, pageSize, searchTerm);
   }, [pageNumber, pageSize, searchTerm]);
@@ -35,12 +36,10 @@ const Usuarios = () => {
   const handlePageChange = (newPageNumber) => {
     setPageNumber(newPageNumber);
   };
-  const handleUpdate = () => { 
 
-  };
-  const handleDelete= () => { 
-    
-  }; 
+  const handleUpdate = () => { };
+
+  const handleDelete = () => { };
 
   return (
     <div className="Usuarios-container">
@@ -60,33 +59,25 @@ const Usuarios = () => {
         />
       </div>
 
-      <div className="usuarios-grid">
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Email</th>
-              <th>Rol</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {usuarios.map((usuario) => (
-                <tr key={usuario.id}>
-                <td>{usuario.id}</td>
-                <td>{usuario.nombre}</td>
-                <td>{usuario.apellido}</td>
-                <td>{usuario.email}</td>
-                <td>{usuario.rol}</td>
-                <td><button onClick={handleUpdate} className="btnModificar"><img src={iconEdit}></img></button></td> 
-                <td><button onClick={handleDelete} className="btnDelete"><img src={iconDelete}></img></button></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="usuarios-grid-cards">
+        {usuarios.map((usuario) => (
+          <div key={usuario.id} className="usuario-card">
+            <h3>{usuario.nombre} {usuario.apellido}</h3>
+            <div className="usuario-rol">
+            <p >{usuario.email}</p>
+            <p >{usuario.rol}</p>
+            </div>
+
+            <div className="usuario-actions">
+              <button onClick={handleUpdate} className="btnModificar">
+                <img src={iconEdit} alt="Editar" />
+              </button>
+              <button onClick={handleDelete} className="btnDelete">
+                <img src={iconDelete} alt="Eliminar" />
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className="pagination">
