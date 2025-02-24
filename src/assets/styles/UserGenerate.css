@@ -7,8 +7,8 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   color: #333;
-  overflow: hidden; /* Evita que el contenido se desborde */
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  overflow: hidden; 
+  box-sizing: border-box;
 }
 
 .user-generate-title {
@@ -25,15 +25,15 @@
   gap: 1rem;
   max-height: 80vh;
   overflow-y: auto;
-  width: 100%; /* Ocupa el 100% del ancho del contenedor */
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .form-row {
   display: flex;
   gap: 1rem;
-  width: 100%; /* Ocupa el 100% del ancho del formulario */
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  width: 100%; 
+  box-sizing: border-box;
 }
 
 .form-group {
@@ -41,8 +41,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
-  width: 100%; /* Ocupa el 100% del ancho del form-row */
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  width: 100%; 
+  box-sizing: border-box; 
 }
 
 .form-label {
@@ -52,7 +52,7 @@
 }
 
 .form-input {
-  width: 100%; /* Ocupa el 100% del ancho del form-group */
+  width: 100%; 
   padding: 0.6rem;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -60,7 +60,7 @@
   color: #333;
   font-size: 0.9rem;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  box-sizing: border-box;
 }
 
 .form-input:focus {
@@ -85,7 +85,7 @@
   width: 100%;
   max-width: 180px;
   margin: 1rem auto 0;
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  box-sizing: border-box; 
 }
 
 .form-button:hover {
@@ -102,10 +102,10 @@
   color: #2c3e50;
   font-weight: 500;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: auto; /* Ajusta el ancho automáticamente */
-  max-width: 100%; /* No excede el ancho del contenedor */
+  width: auto; 
+  max-width: 100%; 
   margin-bottom: 4px;
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  box-sizing: border-box; 
 }
 
 .eliminar-button {
@@ -136,11 +136,11 @@
   width: 100%;
   max-width: 300px;
   margin-bottom: 1rem;
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  box-sizing: border-box; 
 }
 
 .desplegable-button {
-  width: 100%; /* Ocupa el 100% del ancho del contenedor */
+  width: 100%; 
   padding: 0.6rem;
   background-color: #f9f9f9;
   border: 1px solid #ccc;
@@ -150,7 +150,7 @@
   cursor: pointer;
   text-align: left;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  box-sizing: border-box; 
 }
 
 .desplegable-button:hover {
@@ -167,7 +167,7 @@
   position: absolute;
   top: 100%;
   left: 0;
-  width: 100%; /* Ocupa el 100% del ancho del contenedor */
+  width: 100%; 
   max-height: 200px;
   overflow-y: auto;
   background-color: #ffffff;
@@ -176,7 +176,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   margin-top: 4px;
-  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  box-sizing: border-box; 
 }
 
 .desplegable-item {
