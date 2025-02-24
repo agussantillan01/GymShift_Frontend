@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { GetTiposEventos } from "../api/TipoEventoService";
+import {RegiserAsync} from "../api/AuthService";
 import "../assets/styles/UserGenerate.css";
 
 const UserGenerate = () => {
@@ -51,22 +52,27 @@ const UserGenerate = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log("Datos del formulario:", {
-      nombre,
-      apellido,
-      email,
-      userName,
-      tipoUsuario: rolUsuarioLogueado === "ADMIN" ? tipoUsuario : null,
-      eventosSeleccionados,
-    });
-
     setNombre("");
     setApellido("");
     setEmail("");
     setUserName("");
     setTipoUsuario("");
     setEventosSeleccionados([]);
+  };
+
+  const handleBtnCreate = async() => { 
+    let evSelec = eventosSeleccionados.map((evento) => evento.nombre);
+    console.log("Datos del formulario 2:", {
+    nombre,
+    apellido,
+    email,
+    userName,
+    tipoUsuario: rolUsuarioLogueado === "ADMIN" ? tipoUsuario : null,
+    eventosSeleccionados,
+    });
+    
+    const data = await RegiserAsync(nombre, apellido, email, userName,tipoUsuario, eventosSeleccionados);
+    console.log(data);
   };
 
   return (
@@ -196,7 +202,7 @@ const UserGenerate = () => {
           </div>
         ) : null}
 
-        <button type="submit" className="form-button">
+        <button type="submit" className="form-button" onClick={handleBtnCreate}> 
           Generar Usuario
         </button>
       </form>

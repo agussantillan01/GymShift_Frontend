@@ -129,11 +129,11 @@
 }
 
 .btnModificar {
-  background-color: rgb(57, 109, 205);
+  background-color: rgb(159, 193, 255);
 }
 
 .btnDelete {
-  background-color: rgb(237, 44, 44);
+  background-color: rgb(255, 111, 111);
 }
 
 .btnModificar img, .btnDelete img {
