@@ -37,14 +37,7 @@ export const getUser = () => {
 
 export const RegiserAsync = async (FirstName, LastName, Email, UserName, Rol, ActividadesArray) => { 
 try {
-    console.log("Desde register async: FirstName:", FirstName);
-    console.log("Desde register async: LastName:", LastName);
-    console.log("Desde register async: Email:", Email);
-    console.log("Desde register async: UserName:", UserName);
-    console.log("Desde register async: Rol:", Rol);
-
     const Actividades = ActividadesArray.map(act => act.nombre);
-    console.log("Desde register async: Actividades:", Actividades);
     const response = await apiClient.post(
         API_URL_REGISTER, 
         { FirstName, LastName, Email,UserName,  Rol, Actividades},
