@@ -11,7 +11,6 @@ const UserGenerate = () => {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [email, setEmail] = useState("");
-  const [userName, setUserName] = useState("");
   const [tipoUsuario, setTipoUsuario] = useState("");
 
   const [tiposEventos, setTiposEventos] = useState([]);
@@ -55,7 +54,6 @@ const UserGenerate = () => {
     setNombre("");
     setApellido("");
     setEmail("");
-    setUserName("");
     setTipoUsuario("");
     setEventosSeleccionados([]);
   };
@@ -66,12 +64,11 @@ const UserGenerate = () => {
     nombre,
     apellido,
     email,
-    userName,
     tipoUsuario: rolUsuarioLogueado === "ADMIN" ? tipoUsuario : null,
     eventosSeleccionados,
     });
     
-    const data = await RegiserAsync(nombre, apellido, email, userName,tipoUsuario, eventosSeleccionados);
+    const data = await RegiserAsync(nombre, apellido, email, tipoUsuario, eventosSeleccionados);
     console.log(data);
   };
 
@@ -124,19 +121,6 @@ const UserGenerate = () => {
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="userName" className="form-label">
-              Nombre de usuario:
-            </label>
-            <input
-              type="text"
-              id="userName"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              className="form-input"
-              required
-            />
-          </div>
         </div>
 
         {rolUsuarioLogueado === "ADMIN" && (

@@ -35,8 +35,9 @@ export const getUser = () => {
     return JSON.parse(localStorage.getItem("user"));
 };
 
-export const RegiserAsync = async (FirstName, LastName, Email, UserName, Rol, ActividadesArray) => { 
+export const RegiserAsync = async (FirstName, LastName, Email, Rol, ActividadesArray) => { 
 try {
+    const UserName = Email;
     const Actividades = ActividadesArray.map(act => act.nombre);
     const response = await apiClient.post(
         API_URL_REGISTER, 
