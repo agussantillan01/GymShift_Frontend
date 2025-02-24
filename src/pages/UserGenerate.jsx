@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { GetTiposEventos } from "../api/TipoEventoService";
-import {RegiserAsync} from "../api/AuthService";
+import { RegiserAsync } from "../api/AuthService";
 import "../assets/styles/UserGenerate.css";
 
 const UserGenerate = () => {
@@ -20,6 +20,8 @@ const UserGenerate = () => {
   const fetchTiposEventos = async () => {
     try {
       const data = await GetTiposEventos();
+      console.log("EVENTOS: ", data);
+      console.log("TIPOS DE EVENTOS", tiposEventos); 
       setTiposEventos(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Error al obtener los tipos de eventos:", error);
@@ -28,6 +30,7 @@ const UserGenerate = () => {
   };
 
   useEffect(() => {
+    console.log('Tipo de usuario:', tipoUsuario, 'Rol:', rolUsuarioLogueado);
     if (
       (rolUsuarioLogueado === "ADMIN" && tipoUsuario === "Coach") ||
       rolUsuarioLogueado === "RECEPCIONISTA"
@@ -39,10 +42,11 @@ const UserGenerate = () => {
   }, [tipoUsuario, rolUsuarioLogueado]);
 
   const handleSeleccionarActividad = (evento) => {
+    console.log("Evento seleccionado:", evento);
     if (!eventosSeleccionados.some((e) => e.id === evento.id)) {
       setEventosSeleccionados([...eventosSeleccionados, evento]);
     }
-    setMostrarDesplegable(false); 
+    setMostrarDesplegable(false);
   };
 
   const handleEliminarActividad = (eventoId) => {
@@ -58,16 +62,16 @@ const UserGenerate = () => {
     setEventosSeleccionados([]);
   };
 
-  const handleBtnCreate = async() => { 
+  const handleBtnCreate = async () => {
     let evSelec = eventosSeleccionados.map((evento) => evento.nombre);
     console.log("Datos del formulario 2:", {
-    nombre,
-    apellido,
-    email,
-    tipoUsuario: rolUsuarioLogueado === "ADMIN" ? tipoUsuario : null,
-    eventosSeleccionados,
+      nombre,
+      apellido,
+      email,
+      tipoUsuario: rolUsuarioLogueado === "ADMIN" ? tipoUsuario : null,
+      eventosSeleccionados,
     });
-    
+
     const data = await RegiserAsync(nombre, apellido, email, tipoUsuario, eventosSeleccionados);
     console.log(data);
   };
@@ -120,7 +124,6 @@ const UserGenerate = () => {
               required
             />
           </div>
-
         </div>
 
         {rolUsuarioLogueado === "ADMIN" && (
@@ -158,27 +161,37 @@ const UserGenerate = () => {
                   >
                     Seleccionar actividades
                   </button>
-                  {mostrarDesplegable && (
-                    <div className="desplegable-lista">
-                      {tiposEventos.map((evento) => (
-                        <div
-                          key={evento.id}
-                          className="desplegable-item"
-                          onClick={() => handleSeleccionarActividad(evento)}
-                        >
-                          {evento.nombre}
-                        </div>
-                      ))}
-                    </div>
+                  {mostrarDesplegable && tiposEventos.length === 0 ? (
+                    <p>No se han encontrado actividades.</p>
+                  ) : (
+                    mostrarDesplegable && (
+                      <div className="desplegable-lista">
+                        {tiposEventos.map((evento) => (
+                          <div
+                            key={evento.id}
+                            className="desplegable-item"
+                            onClick={() => handleSeleccionarActividad(evento)}
+                          >
+                            {evento.nombre}
+                          </div>
+                        ))}
+                      </div>
+                    )
                   )}
                 </div>
 
-                  <div className="tarjetas-container">
-                    {eventosSeleccionados.map((evento) => (
-                    <div className="tarjeta-actividad">
-                    <span>{evento.nombre}</span>
-                    <button type="button"className="eliminar-button"onClick={() => handleEliminarActividad(evento.id)}>×</button>
-                  </div>
+                <div className="tarjetas-container">
+                  {eventosSeleccionados.map((evento) => (
+                    <div key={evento.id} className="tarjeta-actividad">
+                      <span>{evento.nombre}</span>
+                      <button
+                        type="button"
+                        className="eliminar-button"
+                        onClick={() => handleEliminarActividad(evento.id)}
+                      >
+                        ×
+                      </button>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -186,7 +199,7 @@ const UserGenerate = () => {
           </div>
         ) : null}
 
-        <button type="submit" className="form-button" onClick={handleBtnCreate}> 
+        <button type="submit" className="form-button" onClick={handleBtnCreate}>
           Generar Usuario
         </button>
       </form>
