@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom"; // Agregar useNavigate
 import "../assets/styles/Usuarios.css";
-import { Link } from "react-router-dom";
 import { getUsuarios } from "../api/UserService"; 
 import iconDelete from "../assets/images/iconDelete.svg";
 import iconEdit from "../assets/images/iconEdit.svg"; 
@@ -12,11 +12,12 @@ const Usuarios = () => {
   const [pageSize, setPageSize] = useState(9);
   const [totalPages, setTotalPages] = useState(0);
 
+  const navigate = useNavigate(); // Hook para la navegación
+
   const fetchUsuarios = async (pageNumber, pageSize, filter) => {
     try {
       const data = await getUsuarios(pageNumber, pageSize, filter);
-      setUsuarios(Array.isArray(data) ? data : []); // Asegura que sea un array
-      console.log(data);
+      setUsuarios(Array.isArray(data) ? data : []); 
       setTotalPages(Math.ceil((data.length || 1) / pageSize)); 
     } catch (error) {
       setUsuarios([]);
@@ -30,14 +31,22 @@ const Usuarios = () => {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-    setPageNumber(1); 
+    setPageNumber(1);
   };
 
   const handlePageChange = (newPageNumber) => {
     setPageNumber(newPageNumber);
   };
 
-  const handleUpdate = () => { };
+  const handleUpdate = (id) => { 
+    if (!id) {
+      console.error("❌ ID no definido");
+      return;
+    }
+    console.log("🔄 Navegando a:", `/UsuarioEdit/${id}`);
+    navigate(`/UsuarioEdit/${id}`);
+  };
+  
 
   const handleDelete = () => { };
 
@@ -64,12 +73,12 @@ const Usuarios = () => {
           <div key={usuario.id} className="usuario-card">
             <h3>{usuario.nombre} {usuario.apellido}</h3>
             <div className="usuario-rol">
-            <p >{usuario.email}</p>
-            <p >{usuario.rol}</p>
+              <p>{usuario.email}</p>
+              <p>{usuario.rol}</p>
             </div>
 
             <div className="usuario-actions">
-              <button onClick={handleUpdate} className="btnModificar">
+              <button onClick={() => handleUpdate(usuario.id)} className="btnModificar">
                 <img src={iconEdit} alt="Editar" />
               </button>
               <button onClick={handleDelete} className="btnDelete">

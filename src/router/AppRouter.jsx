@@ -6,7 +6,7 @@ import Usuarios from "../pages/Usuarios";
 import UserGenerate from "../pages/userGenerate";
 import PrivateRoute from "../router/PrivateRoute"; 
 import Layout from "../layouts/Layout";
-
+import UsuarioEdit from "../pages/UsuarioEdit";
 const AppRouter = () => {
   return (
     <Router>
@@ -20,6 +20,7 @@ const AppRouter = () => {
         <Route element={<PrivateRoute rolesPermitidos={["ADMIN", "RECEPCIONISTA"]} />}>
             <Route path="/Usuarios" element={<Layout title="Usuarios"><Usuarios /></Layout>} />  
             <Route path="/UserGenerate" element={<Layout title="Crear Usuario"><UserGenerate /></Layout>} />
+            <Route path="/UsuarioEdit/:userId" element={<Layout title="Editar Usuario"><UsuarioEdit /></Layout>} />
         </Route>
       </Routes>
     </Router>
