@@ -2,8 +2,8 @@ import { GetUsuario } from "../api/UserService";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GetTiposEventos } from "../api/TipoEventoService"; 
+import { Update } from "../api/UserService";
 import "../assets/styles/UsuarioEdit.css";
-
 const UsuarioEdit = () => {
   const { userId } = useParams();
   const [usuario, setUsuario] = useState({
@@ -75,6 +75,18 @@ const UsuarioEdit = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("✅ Datos actualizados:", { ...usuario, actividades: eventosSeleccionados });
+  };
+
+  const handleClickGuardar = () => {
+    const usuarioCompleto = {
+      userId,
+      ...usuario, 
+      actividades: eventosSeleccionados,
+    };
+    
+    var res = Update(usuarioCompleto);
+    console.log("✅ Usuario completo a guardar:", usuarioCompleto);
+    
   };
 
   return (
@@ -189,7 +201,7 @@ const UsuarioEdit = () => {
             </div>
           </div>
   )}
-          <button type="submit" className="form-button">Guardar Cambios</button>
+          <button type="submit" className="form-button" onClick={handleClickGuardar}>Guardar Cambios</button>
         </form>
       </div>
     </div>

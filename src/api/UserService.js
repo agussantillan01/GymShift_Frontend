@@ -23,6 +23,7 @@ export const getUsuarios = async (pageNumber = 1, pageSize = 10, filter = "") =>
 };
 
 const API_URL_Usuario = "/GetUsuario";
+
 export const GetUsuario = async (idUsuario) => {
   try {
     console.log("GET USUARIO ID: ", idUsuario);
@@ -41,5 +42,34 @@ export const GetUsuario = async (idUsuario) => {
   } catch (error) {
     console.error("❌ Error al obtener usuario:", error);
     throw error.response?.data?.message || "Error al obtener el usuario";
+  }
+};
+
+
+const API_URL_UPDATE = "/Update";
+export const Update = async (usuario) => {
+  try {
+      const usuarioCorregido = {
+          Id: parseInt(usuario.userId),  
+          Nombre: usuario.nombre,
+          Apellido: usuario.apellido,
+          Email: usuario.email,
+          UserName: usuario.username,
+          Rol: usuario.tipoUsuario, 
+          Actividades: usuario.actividades
+      };
+
+      console.log("Enviando usuario corregido:", usuarioCorregido);
+
+      const response = await apiClient.post(API_URL_UPDATE, usuarioCorregido, {
+          headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`
+          }
+      });
+
+      return response.data;
+  } catch (error) {
+      console.error("❌ Error al actualizar usuario:", error);
+      throw error;
   }
 };
