@@ -1,0 +1,45 @@
+.step {
+  width: 100%;
+  padding: 10px; 
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 5px; 
+}
+
+.step h3 {
+  font-size: 16px; 
+  margin-bottom: 5px; 
+}
+
+label {
+  font-size: 13px; 
+  margin-bottom: 3px; 
+}
+
+input[type="date"],
+input[type="time"],
+input[type="number"] {
+  padding: 5px 8px; 
+  font-size: 13px; 
+}
+
+.step .form-navigation {
+  margin-top: 10px; 
+  text-align: center;
+}
+
+button {
+  padding: 8px 12px; 
+  font-size: 14px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.row .form-label {
+  flex: 1; 
+}

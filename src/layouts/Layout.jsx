@@ -16,7 +16,7 @@ const Layout = ({ children, title }) => {
       </aside>
 
       <main className="main-content">
-        <Header title={title} /> {/* Usa el componente Header */}
+        <Header title={title} /> 
         {children}
       </main>
     </div>

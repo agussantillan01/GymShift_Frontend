@@ -1,0 +1,32 @@
+.Eventos-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0rem;
+    text-align: center;
+  }
+
+  .alignButton {
+    text-align: right;
+  }
+
+  .button-crearEvento {
+    width: 15%;
+    padding: 3px;
+    background-color: #2d2d2d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 0px;
+  }
+  
+  .button-crearEvento:hover {
+    background-color: #000;
+  }
+  
+
+  .MisEventos-container { 
+    text-align: left;
+  }
+  
