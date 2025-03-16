@@ -5,7 +5,7 @@ import Step3DiasDescripcion from "../components/GenerarEvento/Step3DiasDescripci
 import Step4CupoValor from "../components/GenerarEvento/Step4CupoValor";
 import FormNavigation from "../components/GenerarEvento/FormNavigation";
 import "../assets/styles/GenerarEvento/GenerarEvento.css";
-import {GenerarEventoAsync} from "../api/GenerarEventoService";
+import {GenerarEvento as generarEventoAPI } from "../api/GenerarEventoService";
 export default function GenerarEvento() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -55,7 +55,7 @@ export default function GenerarEvento() {
     console.log("Datos enviados:", formData);
 
     try {
-      const response = await GenerarEventoAsync(formData);
+      const response = await generarEventoAPI(formData);
       console.log("Respuesta del backend:", response);
       alert("Evento generado correctamente.");
     } catch (error) {
