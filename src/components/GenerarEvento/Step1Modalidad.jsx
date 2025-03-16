@@ -18,7 +18,7 @@ const Step1Modalidad = ({ formData, handleChange }) => {
     };
 
     fetchTiposEventos();
-  }, []); // Se ejecuta solo una vez al montar el componente
+  }, []);
 
   return (
     <div className="step step1-modalidad">
