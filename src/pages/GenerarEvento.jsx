@@ -5,7 +5,7 @@ import Step3DiasDescripcion from "../components/GenerarEvento/Step3DiasDescripci
 import Step4CupoValor from "../components/GenerarEvento/Step4CupoValor";
 import FormNavigation from "../components/GenerarEvento/FormNavigation";
 import "../assets/styles/GenerarEvento/GenerarEvento.css";
-
+import {GenerarEventoAsync} from "../api/GenerarEventoService";
 export default function GenerarEvento() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -51,18 +51,31 @@ export default function GenerarEvento() {
      );
   };
 
+  const handleSubmit = async () => {
+    console.log("Datos enviados:", formData);
+
+    try {
+      const response = await GenerarEventoAsync(formData);
+      console.log("Respuesta del backend:", response);
+      alert("Evento generado correctamente.");
+    } catch (error) {
+      console.error("Error al generar el evento:", error);
+      alert("Hubo un error al generar el evento.");
+    }
+  };
+
   return (
     <div className="form-container">
       <div className="form-steps" style={{ transform: `translateX(-${(step - 1) * 100}%)` }}>
         {renderSteps()}
       </div>
 
-      <FormNavigation
+      <FormNavigation 
         step={step}
         totalSteps={4}
         onPrev={prevStep}
         onNext={nextStep}
-        onSubmit={() => alert(JSON.stringify(formData, null, 2))}
+        onSubmit={handleSubmit}
       />
     </div>
   );
