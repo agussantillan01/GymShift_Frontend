@@ -1,24 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import "../../assets/styles/GenerarEvento/Step1Modalidad.css";
-import { GetDeportesXusuario } from "../../api/TipoEventoService"; //from "../api/TipoEventoService";
+import { GetDeportesXusuario } from "../../api/TipoEventoService";
+import { GetModalidades } from "../../api/ModalidadesService";
 
 const Step1Modalidad = ({ formData, handleChange }) => { 
   const [tiposEventos, setTiposEventos] = useState([]);
+  const [tipoModalidad, setTipoModalidad] = useState([]);
+
+  const fetchTiposEventos = useCallback(async () => {
+    try {
+      const data = await GetDeportesXusuario();
+      console.log("EVENTOS: ", data);
+      setTiposEventos(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Error al obtener los tipos de eventos:", error);
+    }
+  }, []);
+
+  const fetchTiposModalidad = useCallback(async () => {
+    try {
+      const data = await GetModalidades();
+      console.log("MODALIDADES: ", data);
+      setTipoModalidad(Array.isArray(data) ? data : []); 
+    } catch (error) {
+      console.error("Error al obtener los tipos de modalidades:", error);
+    }
+  }, []);
 
   useEffect(() => {
-    const fetchTiposEventos = async () => {
-      try {
-        const data = await GetDeportesXusuario();
-        console.log("EVENTOS: ", data);
-        setTiposEventos(Array.isArray(data) ? data : []);
-      } catch (error) {
-        console.error("Error al obtener los tipos de eventos:", error);
-        setTiposEventos([]);
-      }
-    };
-
     fetchTiposEventos();
-  }, []);
+    fetchTiposModalidad();
+  }, [fetchTiposEventos, fetchTiposModalidad]);
 
   return (
     <div className="step step1-modalidad">
@@ -27,8 +39,11 @@ const Step1Modalidad = ({ formData, handleChange }) => {
         <label className="title-lbl">Modalidad: </label>
         <select name="modalidad" value={formData.modalidad} onChange={handleChange}>
           <option value="">Selecciona una modalidad</option>
-          <option value="Presencial">Presencial</option>
-          <option value="Online">Online</option>
+          {tipoModalidad.map((modalidad) => (
+            <option key={modalidad.id} value={modalidad.id}>
+              {modalidad.modalidad}  
+            </option>
+          ))}
         </select>
       </div>
 
