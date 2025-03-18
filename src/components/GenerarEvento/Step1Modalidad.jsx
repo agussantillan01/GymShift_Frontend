@@ -21,7 +21,7 @@ const Step1Modalidad = ({ formData, handleChange }) => {
     try {
       const data = await GetModalidades();
       console.log("MODALIDADES: ", data);
-      setTipoModalidad(Array.isArray(data) ? data : []); 
+      setTipoModalidad(Array.isArray(data) ? data : []); // ✅ Corregido: usa setTipoModalidad
     } catch (error) {
       console.error("Error al obtener los tipos de modalidades:", error);
     }
@@ -41,7 +41,7 @@ const Step1Modalidad = ({ formData, handleChange }) => {
           <option value="">Selecciona una modalidad</option>
           {tipoModalidad.map((modalidad) => (
             <option key={modalidad.id} value={modalidad.id}>
-              {modalidad.modalidad}  
+              {modalidad.modalidad} 
             </option>
           ))}
         </select>
