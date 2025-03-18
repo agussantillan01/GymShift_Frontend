@@ -21,7 +21,7 @@ const Step1Modalidad = ({ formData, handleChange }) => {
     try {
       const data = await GetModalidades();
       console.log("MODALIDADES: ", data);
-      setTipoModalidad(Array.isArray(data) ? data : []); // ✅ Corregido: usa setTipoModalidad
+      setTipoModalidad(Array.isArray(data) ? data : []); 
     } catch (error) {
       console.error("Error al obtener los tipos de modalidades:", error);
     }
