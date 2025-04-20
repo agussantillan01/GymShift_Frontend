@@ -48,7 +48,7 @@ export const GetEventosAprbadosXCoach = async (id) => {
       }
     );
 
-    console.log("✅ Eventos obtenidos:", response.data);
+    // console.log("✅ Eventos obtenidos:", response.data);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || error.message || "Error desconocido";
@@ -75,7 +75,7 @@ export const GetClasesSolicitadasXCoach = async () => {
       }
     );
 
-    console.log("✅ Eventos obtenidos:", response.data);
+    // console.log("✅ Eventos obtenidos:", response.data);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || error.message || "Error desconocido";
@@ -103,7 +103,7 @@ export const GetClasesSolicitadas = async () => {
       }
     );
 
-    console.log("✅ Eventos obtenidos:", response.data);
+    // console.log("✅ Eventos obtenidos:", response.data);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || error.message || "Error desconocido";

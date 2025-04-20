@@ -28,7 +28,30 @@
   background-color: #444;
 }
 
-
+.btnModificarMisSolicitudes {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: rgb(159, 193, 255);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease;
+}
+.btnModificarMisSolicitudes:hover {
+  background-color: rgb(139, 173, 235);
+}
+.btnModificarMisSolicitudes img {
+  width: 20px;
+  height: 20px;
+}
 .eventos-section {
   text-align: left;
 }
@@ -46,6 +69,7 @@
 }
 
 .evento-card {
+  position: relative; /* necesario para posicionar el botón dentro */
   background: white;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);

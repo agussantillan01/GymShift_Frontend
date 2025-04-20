@@ -27,6 +27,8 @@ const AppRouter = () => {
         <Route element={<PrivateRoute rolesPermitidos={["COACH"]} />}>
           
             <Route path="/GenerarEvento" element={<Layout title="Generar Evento"><GenerarEvento /></Layout>} />  
+            <Route path="/GenerarEvento/:id" element={<Layout title="Editar Evento"><GenerarEvento /></Layout>} />
+
         </Route>
       </Routes>
     </Router>

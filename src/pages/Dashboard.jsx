@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { GetEventosAprbadosXCoach, GetClasesSolicitadasXCoach, GetClasesSolicitadas } from "../api/EventosService";
 import "../assets/styles/Dashboard.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
+import iconEdit from "../assets/images/iconEdit.svg"; 
 const Dashboard = () => {
   const [eventosAprobados, setEventosAprobados] = useState([]);
   const [eventosSolicitadosXCoach, setEventosSolicitadosXCoach] = useState([]);
@@ -14,6 +15,8 @@ const Dashboard = () => {
   const tienePermisoEventoView = user?.usuario.permissions?.includes("evento.view");
   const tienePermisoSolicitudView = user?.usuario.permissions?.includes("solicitud.view");
 
+
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchEventos = async () => {
       try {
@@ -42,6 +45,10 @@ const Dashboard = () => {
     return <div>Cargando...</div>;
   }
 
+  const handleUpdateSolicitudPendiente = (id) => { 
+    console.log("EL ID DE PARAMETRO handleUpdateSolicitudPendiente : ", id);
+    navigate(`/GenerarEvento/${id}`);
+  };
   return (
     <div className="dashboard-container">
       {tienePermisoCrearEvento && (
@@ -84,6 +91,10 @@ const Dashboard = () => {
                     <p><strong>Fecha Fin:</strong> {evento.fechaFin}</p>
                     <p><strong>Horario:</strong> {evento.horario}</p>
                     <p><strong>Días:</strong> {evento.dias}</p>
+
+                    <button onClick={() => handleUpdateSolicitudPendiente(evento.id)} className="btnModificarMisSolicitudes">
+                <img src={iconEdit} alt="Editar" />
+              </button>
                   </div>
                 ))
               ) : (
