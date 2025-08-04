@@ -52,11 +52,9 @@ export default function GenerarEvento() {
   };
 
   const handleSubmit = async () => {
-    console.log("Datos enviados:", formData);
 
     try {
       const response = await generarEventoAPI(formData);
-      console.log("Respuesta del backend:", response);
       alert("Evento generado correctamente.");
     } catch (error) {
       console.error("Error al generar el evento:", error);

@@ -10,7 +10,6 @@ const Step1Modalidad = ({ formData, handleChange }) => {
   const fetchTiposEventos = useCallback(async () => {
     try {
       const data = await GetDeportesXusuario();
-      console.log("EVENTOS: ", data);
       setTiposEventos(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Error al obtener los tipos de eventos:", error);
@@ -20,7 +19,6 @@ const Step1Modalidad = ({ formData, handleChange }) => {
   const fetchTiposModalidad = useCallback(async () => {
     try {
       const data = await GetModalidades();
-      console.log("MODALIDADES: ", data);
       setTipoModalidad(Array.isArray(data) ? data : []); 
     } catch (error) {
       console.error("Error al obtener los tipos de modalidades:", error);

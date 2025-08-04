@@ -26,7 +26,6 @@ const API_URL_Usuario = "/GetUsuario";
 
 export const GetUsuario = async (idUsuario) => {
   try {
-    console.log("GET USUARIO ID: ", idUsuario);
     const token = localStorage.getItem("token");
     if (!token) {
       throw new Error("No hay token disponible");
@@ -59,7 +58,6 @@ export const Update = async (usuario) => {
           Actividades: usuario.actividades
       };
 
-      console.log("Enviando usuario corregido:", usuarioCorregido);
 
       const response = await apiClient.post(API_URL_UPDATE, usuarioCorregido, {
           headers: {

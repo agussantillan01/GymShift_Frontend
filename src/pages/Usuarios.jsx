@@ -43,7 +43,6 @@ const Usuarios = () => {
       console.error("❌ ID no definido");
       return;
     }
-    console.log("🔄 Navegando a:", `/UsuarioEdit/${id}`);
     navigate(`/UsuarioEdit/${id}`);
   };
   

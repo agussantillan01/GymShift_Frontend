@@ -4,8 +4,6 @@ const API_URL_AUTH = "/Authenticate";
 const API_URL_REGISTER = "/Register";  
 export const login = async (Usuario, Password) => {
     try {
-        console.log("🟢 Enviando datos al backend:", { Usuario, Password });
-
         const response = await apiClient.post(
             API_URL_AUTH, 
             { Usuario, Password }, 

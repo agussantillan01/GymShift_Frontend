@@ -74,7 +74,6 @@ const UsuarioEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("✅ Datos actualizados:", { ...usuario, actividades: eventosSeleccionados });
   };
 
   const handleClickGuardar = () => {
@@ -84,9 +83,7 @@ const UsuarioEdit = () => {
       actividades: eventosSeleccionados,
     };
     
-    var res = Update(usuarioCompleto);
-    console.log("✅ Usuario completo a guardar:", usuarioCompleto);
-    
+    var res = Update(usuarioCompleto);    
   };
 
   return (

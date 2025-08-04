@@ -1,7 +1,6 @@
 import apiClient from "./apiClient";  
 const API_URL_Generar = "/GenerarEvento"; 
 export const GenerarEvento = async (clase) => {  
-    console.log("📤 Enviando datos al backend:", clase);
 
     try {
         const token = localStorage.getItem("token");
@@ -19,7 +18,6 @@ export const GenerarEvento = async (clase) => {
             }
         );
 
-        console.log("✅ Evento generado con éxito:", response.data);
         return response.data;  
     } catch (error) {
         const errorMessage = error.response?.data?.message || error.message || "Error desconocido";
@@ -48,7 +46,6 @@ export const GetEventosAprbadosXCoach = async (id) => {
       }
     );
 
-    // console.log("✅ Eventos obtenidos:", response.data);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || error.message || "Error desconocido";
@@ -75,7 +72,6 @@ export const GetClasesSolicitadasXCoach = async () => {
       }
     );
 
-    // console.log("✅ Eventos obtenidos:", response.data);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || error.message || "Error desconocido";
@@ -103,7 +99,6 @@ export const GetClasesSolicitadas = async () => {
       }
     );
 
-    // console.log("✅ Eventos obtenidos:", response.data);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || error.message || "Error desconocido";

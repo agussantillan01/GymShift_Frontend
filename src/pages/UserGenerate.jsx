@@ -20,8 +20,6 @@ const UserGenerate = () => {
   const fetchTiposEventos = async () => {
     try {
       const data = await GetTiposEventos();
-      console.log("EVENTOS: ", data);
-      console.log("TIPOS DE EVENTOS", tiposEventos); 
       setTiposEventos(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Error al obtener los tipos de eventos:", error);
@@ -30,7 +28,6 @@ const UserGenerate = () => {
   };
 
   useEffect(() => {
-    console.log('Tipo de usuario:', tipoUsuario, 'Rol:', rolUsuarioLogueado);
     if (
       (rolUsuarioLogueado === "ADMIN" && tipoUsuario === "Coach") ||
       rolUsuarioLogueado === "RECEPCIONISTA"
@@ -42,7 +39,6 @@ const UserGenerate = () => {
   }, [tipoUsuario, rolUsuarioLogueado]);
 
   const handleSeleccionarActividad = (evento) => {
-    console.log("Evento seleccionado:", evento);
     if (!eventosSeleccionados.some((e) => e.id === evento.id)) {
       setEventosSeleccionados([...eventosSeleccionados, evento]);
     }
@@ -64,16 +60,8 @@ const UserGenerate = () => {
 
   const handleBtnCreate = async () => {
     let evSelec = eventosSeleccionados.map((evento) => evento.nombre);
-    console.log("Datos del formulario 2:", {
-      nombre,
-      apellido,
-      email,
-      tipoUsuario: rolUsuarioLogueado === "ADMIN" ? tipoUsuario : null,
-      eventosSeleccionados,
-    });
 
     const data = await RegiserAsync(nombre, apellido, email, tipoUsuario, eventosSeleccionados);
-    console.log(data);
   };
 
   return (
