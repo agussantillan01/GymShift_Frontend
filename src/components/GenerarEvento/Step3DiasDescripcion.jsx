@@ -5,11 +5,11 @@ export default function Step3DiasDescripcion({ formData, handleChange }) {
   const diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
   const [diasSeleccionados, setDiasSeleccionados] = useState(formData.dias || []);
-  const [isDropdownOpen, setDropdownOpen] = useState(false); 
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const handleDiaClick = (dia) => {
     const updatedDias = diasSeleccionados.includes(dia)
-      ? diasSeleccionados.filter(d => d !== dia) 
+      ? diasSeleccionados.filter(d => d !== dia)
       : [...diasSeleccionados, dia];
 
     setDiasSeleccionados(updatedDias);
@@ -23,7 +23,7 @@ export default function Step3DiasDescripcion({ formData, handleChange }) {
   };
 
   const toggleDropdown = () => {
-    setDropdownOpen((prevState) => !prevState); 
+    setDropdownOpen((prevState) => !prevState);
   };
 
   return (
@@ -43,7 +43,7 @@ export default function Step3DiasDescripcion({ formData, handleChange }) {
                 <div
                   key={dia}
                   className={`dias-item ${diasSeleccionados.includes(dia) ? 'selected' : ''}`}
-                  onClick={() => handleDiaClick(dia)} 
+                  onClick={() => handleDiaClick(dia)}
                 >
                   {dia}
                 </div>
@@ -52,17 +52,17 @@ export default function Step3DiasDescripcion({ formData, handleChange }) {
           )}
         </div>
       </label>
-<div className="descip">
-<label>Descripción</label>
-  <textarea
-        name="descripcion"
-        placeholder="Descripción del evento"
-        value={formData.descripcion}
-        onChange={handleChange}
-        className="descripcion-input"
-      />
-    </div>
-</div>
 
+      <div className="descip">
+        <label>Descripción</label>
+        <textarea
+          name="descripcion"
+          placeholder="Descripción del evento"
+          value={formData.descripcion}
+          onChange={handleChange}
+          className="descripcion-input"
+        />
+      </div>
+    </div>
   );
 }

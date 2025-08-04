@@ -5,7 +5,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 
 .step h3 {
@@ -16,6 +16,7 @@
 }
 
 .dias-dropdown {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -23,14 +24,25 @@
 
 .dropdown-toggle {
   padding: 8px 12px;
+  background-color: #333;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
+/* .dropdown-toggle:hover {
+ background-color: #0056b3;
+} */
+
 .dias-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -59,21 +71,25 @@
   color: #fff;
 }
 
-.dias-seleccionados {
-  margin-top: 10px;
+.descip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.descip { 
-  text-align: center;
+.descip label {
+  margin-bottom: 50px;
+  font-weight: bold;
 }
+
+
 .descip .descripcion-input {
-  width: 500%;
-  max-width: 200%; 
+  width: 145%;
+  max-width: 900px; 
   height: 150px;
-  padding: 0;
+  padding: 8px 12px;
   border-radius: 5px;
   border: 1.5px solid #ccc;
   font-size: 14px;
   box-sizing: border-box;
-  resize: vertical; 
 }

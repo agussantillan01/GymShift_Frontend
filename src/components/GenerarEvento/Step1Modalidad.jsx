@@ -6,7 +6,7 @@ import { GetModalidades } from "../../api/ModalidadesService";
 const Step1Modalidad = ({ formData, handleChange }) => { 
   const [tiposEventos, setTiposEventos] = useState([]);
   const [tipoModalidad, setTipoModalidad] = useState([]);
-
+  const [fieldComplete, setFieldComplete] = useState([false]);
   const fetchTiposEventos = useCallback(async () => {
     try {
       const data = await GetDeportesXusuario();

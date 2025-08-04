@@ -13,7 +13,6 @@ const AppRouter = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-
         <Route element={<PrivateRoute rolesPermitidos={["ADMIN", "RECEPCIONISTA", "COACH", "ALUMNO"]} />}>
             <Route path="/Dashboard" element={<Layout title="Eventos"><Dashboard /></Layout>} />
             <Route path="/Somos" element={<Layout title="¿Quienes Somos?"><Somos /></Layout>} />
